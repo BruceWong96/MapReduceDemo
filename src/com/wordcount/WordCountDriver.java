@@ -30,11 +30,11 @@ public class WordCountDriver {
 		job.setMapOutputValueClass(IntWritable.class);
 		
 		//设置reducer组件类
-		job.setReducerClass(WordCountReducer1.class);
+		job.setReducerClass(WordCountReducer2.class);
 		
 		//设置reducer的key和value输出类型
 		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(Text.class);
+		job.setOutputValueClass(IntWritable.class);
 		
 		FileInputFormat.setInputPaths(job, 
 				new org.apache.hadoop.fs.Path("hdfs://192.168.1.130:9000/word"));
