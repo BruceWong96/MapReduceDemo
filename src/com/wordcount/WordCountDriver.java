@@ -25,11 +25,16 @@ public class WordCountDriver {
 		//设置Mapper组件类
 		job.setMapperClass(WordCountMapper1.class);
 		
-		//设置Mapper的输出key类型
+		//设置Mapper的输出key和value类型
 		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputValueClass(IntWritable.class);
 		
-		//设置Mapper的输出value类型
-		job.setOutputValueClass(IntWritable.class);
+		//设置reducer组件类
+		job.setReducerClass(WordCountReducer1.class);
+		
+		//设置reducer的key和value输出类型
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(Text.class);
 		
 		FileInputFormat.setInputPaths(job, 
 				new org.apache.hadoop.fs.Path("hdfs://192.168.1.130:9000/word"));
