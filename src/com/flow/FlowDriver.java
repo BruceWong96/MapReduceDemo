@@ -19,6 +19,13 @@ public class FlowDriver {
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(Flow.class);
 		
+		//设置分区数
+		job.setNumReduceTasks(3);
+		//设置自定义分区组件
+		//如果不设定，默认用的是HashPartitioner
+		//默认的分区组件，会按Mapper输出key的hashcode分区，确保相同的key落到相同的一个分区里
+		job.setPartitionerClass(FlowPartitioner.class);
+		
 		// TODO: specify a reducer
 		job.setReducerClass(FlowReducer.class);
 
